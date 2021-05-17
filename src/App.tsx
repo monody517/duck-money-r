@@ -1,6 +1,4 @@
 import './App.css';
-import styled from 'styled-components'
-import React from "react";
 import './helper.scss'
 import {
   HashRouter as Router,
@@ -8,8 +6,11 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Nav from 'components/Nav';
-import Layout from 'components/Layout';
+import React from 'react';
+import Tags from './views/Tags'
+import Statistics from 'views/Statistics';
+import Money from 'views/Moneys';
+
 
 
 
@@ -40,27 +41,9 @@ export default function App() {
 function NoMatch(){
   return <h2>没有</h2>
 }
-function Statistics() {
-  return (
-    <Layout>
-      <h2>s</h2>
-    </Layout>
-    );
-}
 
-function Tags() {
-  return (
-    <Layout>
-      <h2>t</h2>
-    </Layout>
-    );
-}
 
-function Money() {
-  return (
-    <Layout>
-      <h2>m</h2>
-    </Layout>
-    );
-}
+
+
+
 
