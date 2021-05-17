@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Icon from './icon'
 
@@ -19,6 +19,12 @@ const NavWarpper = styled.nav`
         width:24px;
         height:24px;
         }
+        &.selected{
+          color:red;
+          .icon{
+            fill:red;
+          }
+        }
       }
       width:33.33%;
       text-align: center;
@@ -31,22 +37,22 @@ const Nav =() => {
         <NavWarpper>
             <ul>
             <li>  
-            <Link to="/tags">
+            <NavLink to="/tags" activeClassName="selected">
               <Icon name='money'></Icon>
               标签页
-            </Link>
+            </NavLink>
             </li>
             <li>
-            <Link to="/money">
+            <NavLink to="/money" activeClassName="selected">
               <Icon name='tag'></Icon>
               记账页
-            </Link>
+            </NavLink>
             </li>
             <li>
-            <Link to="/statistics">
+            <NavLink to="/statistics" activeClassName="selected">
               <Icon name='statistics'></Icon>
               统计页
-            </Link>
+            </NavLink>
             </li>
         </ul>
       </NavWarpper>

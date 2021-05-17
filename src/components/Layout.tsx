@@ -11,10 +11,6 @@ const Wrapper = styled.div`
 const Main = styled.div`
 flex-grow:1`
 
-type Prop = {
-
-}
-
 const Layout = (prop:any) => {
     return(
         <Wrapper>
