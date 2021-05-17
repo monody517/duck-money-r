@@ -9,24 +9,15 @@ import {
   Redirect
 } from "react-router-dom";
 import Nav from 'components/Nav';
+import Layout from 'components/Layout';
 
 
-const Wrapper = styled.div`
-  height:100vh;
-  display:flex;
-  flex-direction:column-reverse;
-  font-family:$font-hei;
-`
-const Main = styled.div`
-flex-grow:1`
+
 
 
 export default function App() {
   return (
     <Router>
-      <Wrapper>
-        <Nav/>
-        <Main>
         <Switch>
           <Route path="/tags">
             <Tags />
@@ -42,8 +33,6 @@ export default function App() {
             <NoMatch />
           </Route>
         </Switch>
-        </Main>
-      </Wrapper>
     </Router>
   );
 }
@@ -52,14 +41,26 @@ function NoMatch(){
   return <h2>没有</h2>
 }
 function Statistics() {
-  return <h2>统计页</h2>;
+  return (
+    <Layout>
+      <h2>s</h2>
+    </Layout>
+    );
 }
 
 function Tags() {
-  return <h2>标签页</h2>;
+  return (
+    <Layout>
+      <h2>t</h2>
+    </Layout>
+    );
 }
 
 function Money() {
-  return <h2>记账页</h2>;
+  return (
+    <Layout>
+      <h2>m</h2>
+    </Layout>
+    );
 }
 
