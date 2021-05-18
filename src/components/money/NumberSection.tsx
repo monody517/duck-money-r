@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -35,10 +35,43 @@ $bg:#fbaa00;
 `
 
 const NumberSection:FC = () => {
+    const [output,setOutput] = useState('0')
+    const onClickButtons = (e:React.MouseEvent) => {
+        const text = (e.target as HTMLButtonElement).textContent
+        if(text === null){return}
+        switch(text){
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '0':
+            case '.':
+                if(output === '0'){
+                    setOutput(text)
+                }else{
+                    setOutput(output+text)
+                }
+                break;
+            case '删除':
+                console.log('删除');
+                break;
+            case '清空':
+                console.log('清空');
+                break;
+            case 'OK':
+                console.log('ok');
+                break; 
+        }    
+    }
     return(
         <Wrapper>
-        <div className='output'>100</div>
-        <div className='buttons'>
+        <div className='output'>{output}</div>
+        <div className='buttons' onClick={onClickButtons}>
           <button>1</button>
           <button>2</button>
           <button>3</button>

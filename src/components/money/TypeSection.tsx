@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styled from "styled-components";
 
 const Wrapper = styled.section`
@@ -26,11 +26,21 @@ ul{
 }`
 
 const TypeSection:FC = () => {
+    const [typeList] = useState<('-'|'+')[]>(['-','+'])
+    const [currentType,setCurrentType] = useState('-')
+    const typeMap = {'-':'支出','+':'收入'}
     return(
         <Wrapper>
             <ul>
-                <li className={'selected'}>支出</li>
-                <li className={'selected'}>收入</li>
+                {typeList.map(t=>{
+                    return(
+                        <li
+                        key={t}
+                        className={currentType===t?'selected':''}
+                        onClick={()=>setCurrentType(t)}
+                        >{typeMap[t]}</li>
+                    )
+                })}
             </ul>
       </Wrapper>
     )
