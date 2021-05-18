@@ -3,12 +3,14 @@ import styled from "styled-components"
 import Nav from "./Nav";
 
 const Wrapper = styled.div`
-  height:100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   font-family:$font-hei;
 `
 const Main = styled.div`
+display:flex;
+flex-direction:column;
 flex-grow:1`
 
 const Layout = (prop:any) => {
