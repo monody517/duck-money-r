@@ -35,15 +35,19 @@ $bg:#fbaa00;
     }
 `
 
-const NumberSection:FC = () => {
-    const [output,_setOutput] = useState('0')
+type Prop = {
+    number:string,
+    onChange:(number:string)=>void
+}
+const NumberSection:FC<Prop> = (prop) => {
+    const output = prop.number
     const setOutput = (output:string) => {
         if(output.length>=16){
             return
         }else if(output.length === 0){
             output = '0'  
         }
-        _setOutput(output)
+        prop.onChange(output)
     }
     const onClickButtons = (e:React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent

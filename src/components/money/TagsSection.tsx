@@ -32,9 +32,13 @@ ol{
   }
 }`
 
-const TagsSection:FC = () => {
+type Props = {
+  selected:string[]
+  onChange:(selected:string[])=>void
+}
+const TagsSection:FC<Props> = (prop) => {
   const [tags,setTags] = useState<string[]>(['衣','食','住','行'])
-  const [selectedTag,setSelectedTag] = useState([''])
+  const selectedTag = prop.selected
   const onAddTag = () => {
     const tagName = window.prompt('请问新标签的名称为？')
     if(tagName !== null){
@@ -44,9 +48,9 @@ const TagsSection:FC = () => {
   const onToggleTag = (tag:string) => {
     const index = selectedTag.indexOf(tag)
     if(index>=0){
-      setSelectedTag(selectedTag.filter(t=>t!==tag))
+      prop.onChange(selectedTag.filter(t=>t!==tag))
     }else{
-      setSelectedTag([...selectedTag,tag])
+      prop.onChange([...selectedTag,tag])
     }
   }
     return(

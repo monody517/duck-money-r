@@ -25,9 +25,14 @@ ul{
     }
 }`
 
-const TypeSection:FC = () => {
+type Prop = {
+    type:('-' | '+'),
+    onChange:(type:('-' | '+'))=>void
+}
+
+const TypeSection:FC<Prop> = (prop) => {
     const [typeList] = useState<('-'|'+')[]>(['-','+'])
-    const [currentType,setCurrentType] = useState('-')
+    const currentType = prop.type
     const typeMap = {'-':'支出','+':'收入'}
     return(
         <Wrapper>
@@ -37,7 +42,7 @@ const TypeSection:FC = () => {
                         <li
                         key={t}
                         className={currentType===t?'selected':''}
-                        onClick={()=>setCurrentType(t)}
+                        onClick={()=>prop.onChange(t)}
                         >{typeMap[t]}</li>
                     )
                 })}

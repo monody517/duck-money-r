@@ -19,12 +19,15 @@ const Wrapper = styled.section`
     }
 }`
 
-const NotesSection:FC = () => {
-    const [note,setNode] = useState('')
+type Props = {
+    note:string,
+    onChange:(note:string)=>void
+}
+const NotesSection:FC<Props> = (prop) => {
     const refInput = useRef<HTMLInputElement>(null)
     const onBlur = () => {
         if(refInput.current!== null){
-            setNode(refInput.current.value)
+            prop.onChange(refInput.current.value)
         }
     } 
     return(
@@ -33,7 +36,7 @@ const NotesSection:FC = () => {
         <span>备注</span>
         <input type='text' placeholder='请在此添加备注'
         ref={refInput}
-        defaultValue={note}
+        defaultValue={prop.note}
         onBlur={onBlur}></input>
       </label>
       </Wrapper>
