@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import styled from "styled-components";
+import { generateOutput } from './generateOutput';
 
 const Wrapper = styled.section`
 $bg:#fbaa00;
@@ -47,39 +48,8 @@ const NumberSection:FC = () => {
     const onClickButtons = (e:React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent
         if(text === null){return}
-        switch(text){
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-            case '0':
-                if(output === '0'){               
-                    setOutput(text)
-                }else{
-                    setOutput(output+text)
-                }
-                break;
-            case '删除':
-                setOutput(output.slice(0,-1))
-                break;
-            case '清空':
-                setOutput('0')
-                break;
-            case 'OK':
-                console.log('ok');
-                break;
-            case '.':
-                if(output.indexOf('.')>=0){
-                    return
-                }else{
-                    setOutput(output+'.')
-                }
-        }
+        if(text === 'OK'){return}
+        setOutput(generateOutput(text,output))
     }
     return(
         <Wrapper>
