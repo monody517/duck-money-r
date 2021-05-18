@@ -1,6 +1,7 @@
+import React, { FC } from 'react'
 import styled from "styled-components";
 
-const NotesSection = styled.section`
+const Wrapper = styled.section`
 .notes{
     font-size: 14px;
     background: #f5f5f5;
@@ -17,5 +18,16 @@ const NotesSection = styled.section`
         background: transparent;
     }
 }`
+
+const NotesSection:FC = () => {
+    return(
+        <Wrapper>
+        <label className='notes'>
+        <span>备注</span>
+        <input type='text'></input>
+      </label>
+      </Wrapper>
+    )
+}
 
 export default NotesSection
