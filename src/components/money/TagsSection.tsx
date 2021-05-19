@@ -1,5 +1,6 @@
 import { createId } from 'lib/createId';
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Icon from '../../components/icon'
 import {useTags} from './useTags'
@@ -7,8 +8,7 @@ import {useTags} from './useTags'
 const Wrapper = styled.section`
   flex-grow:1;
 ol{
-  height:150px;
-  overflow:hidden;
+  overflow:auto;
   display:flex;  
   flex-wrap:wrap;
   margin-left: 25px;
@@ -23,6 +23,12 @@ ol{
     border-radius:12px;
     margin-right:15px;
     margin-top:10px;
+    > a{
+      display:flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items: center;
+    }
     &.selected{
       background:#fbaa00;
       color:white;
@@ -36,17 +42,13 @@ ol{
 
 type Props = {
   selected:number[]
+  type:('-' | '+')
   onChange:(selected:number[])=>void
 }
 const TagsSection:FC<Props> = (prop) => {
-  const {tags,setTags} = useTags()
+  const {tags} = useTags()
+  const newTags = tags.filter((t)=>t.type === prop.type)
   const selectedIds = prop.selected
-  const onAddTag = () => {
-    const tagName = window.prompt('请问新标签的名称为？')
-    if(tagName !== null){
-      setTags([...tags,{id:createId(),name:tagName}])
-    }
-  }
   const onToggleTag = (tagId:number) => {
     const index = selectedIds.indexOf(tagId)
     if(index>=0){
@@ -58,7 +60,7 @@ const TagsSection:FC<Props> = (prop) => {
     return(
         <Wrapper>
           <ol>
-            {tags.map(tag=>{
+            {newTags.map(tag=>{
               return(
               <li key={tag.id}
               onClick={()=>onToggleTag(tag.id)}
@@ -68,10 +70,13 @@ const TagsSection:FC<Props> = (prop) => {
                 {tag.name}
               </li>
             )})}
-            <li onClick={onAddTag}>
-              <Icon name="add"></Icon>
-              新增标签
-            </li>
+              <li>
+                <Link to="/tags">
+                  <Icon name="标签管理"></Icon>
+                  标签管理
+                </Link>
+              </li>
+            
           </ol>
         </Wrapper>
     )

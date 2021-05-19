@@ -1,6 +1,7 @@
 import Layout from "components/Layout";
 import { useTags } from "components/money/useTags";
-import React from "react";
+import { createId } from "lib/createId";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Icon from '../components/icon'
@@ -47,8 +48,18 @@ const Wrapper = styled.section`
     }
 `
 
-function Tags() {
-  const {tags} = useTags()
+type Props = {
+  type:('-' | '+')
+}
+
+const Tags:FC<Props> = (prop) => {
+  const {tags,setTags} = useTags()
+  const onAddTag = () => {
+    const tagName = window.prompt('请问新标签的名称为？')
+    if(tagName !== null){
+      setTags([...tags,{id:createId(),name:tagName,type:prop.type}])
+    }
+  }
     return (
       <Layout>
         <Wrapper>
@@ -56,7 +67,7 @@ function Tags() {
           {tags.map(t=>{
             return(
               <li key={t.id}>
-                <Link to={'/tags/' + t}>
+                <Link to={'/tags/' + t.id}>
                   {t.name}
                   <Icon name={t.name}></Icon>
                 </Link>
@@ -64,7 +75,7 @@ function Tags() {
             )
           })}
         </ol>
-        <div className='createdTag'>
+        <div className='createdTag' onClick={onAddTag}>
           <span>新建标签</span>
         </div>
         </Wrapper>

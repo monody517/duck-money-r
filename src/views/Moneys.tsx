@@ -29,6 +29,7 @@ const onChange = (obj:Partial<Selected>) => {
           ></TypeSection>
         <TagsSection 
         selected={selected.tagIds}
+        type={selected.type}
         onChange={tagIds=>onChange({tagIds})}
         ></TagsSection>
         <NotesSection

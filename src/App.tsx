@@ -16,11 +16,11 @@ export default function App() {
   return (
     <Router>
         <Switch>
-        <Route exact path="/tags/:tag" >
+        <Route exact path="/tags/:tag.id" >
             <TagEdit />
           </Route>
           <Route exact path="/tags">
-            <Tags />
+            <Tags type='-'/>
           </Route>
           <Route exact path="/money">
             <Money />
