@@ -6,7 +6,11 @@ function Tags() {
   const {tags,setTags} = useTags()
     return (
       <Layout>
-        <h2>t</h2>
+        <ol>
+          {tags.map(t=>{
+            return <li key='t'>{t}</li>
+          })}
+        </ol>
       </Layout>
       );
   }
