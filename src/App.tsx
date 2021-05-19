@@ -10,16 +10,15 @@ import React from 'react';
 import Tags from './views/Tags'
 import Statistics from 'views/Statistics';
 import Money from 'views/Moneys';
-
-
-
-
-
+import TagEdit from 'views/TagEdit';
 
 export default function App() {
   return (
     <Router>
         <Switch>
+        <Route path="/tags/:tag" exact={true}>
+            <TagEdit />
+          </Route>
           <Route path="/tags">
             <Tags />
           </Route>

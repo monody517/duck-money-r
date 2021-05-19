@@ -1,6 +1,7 @@
 import Layout from "components/Layout";
 import { useTags } from "components/money/useTags";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Icon from '../components/icon'
 
@@ -16,6 +17,7 @@ const Wrapper = styled.section`
         align-content: flex-start;
         flex-grow:1;
         > li{
+          >a{
             display: flex;
             padding: 2px 20px;
             border-radius: 12px;
@@ -28,7 +30,8 @@ const Wrapper = styled.section`
             .icon{
                 width: 50px;
                 height: 25px;   
-                }  
+            }  
+          }    
         }
     }
     .createdTag{
@@ -53,8 +56,10 @@ function Tags() {
           {tags.map(t=>{
             return(
               <li key={t}>
-                {t}
-                <Icon name={t}></Icon> 
+                <Link to={'/tags/' + t}>
+                  {t}
+                  <Icon name={t}></Icon>
+                </Link>
               </li>
             )
           })}
