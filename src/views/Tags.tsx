@@ -48,17 +48,17 @@ const Wrapper = styled.section`
 `
 
 function Tags() {
-  const {tags,setTags} = useTags()
+  const {tags} = useTags()
     return (
       <Layout>
         <Wrapper>
         <ol>
           {tags.map(t=>{
             return(
-              <li key={t}>
+              <li key={t.id}>
                 <Link to={'/tags/' + t}>
-                  {t}
-                  <Icon name={t}></Icon>
+                  {t.name}
+                  <Icon name={t.name}></Icon>
                 </Link>
               </li>
             )

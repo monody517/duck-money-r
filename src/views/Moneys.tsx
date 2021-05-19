@@ -8,7 +8,7 @@ import NumberSection from '../components/money/NumberSection'
 
 function Money() {
   const [selected,setSelected] = useState({
-    tags:[] as string[],
+    tagIds:[] as number[],
     type:'-' as ('-' | '+'),
     note:'',
     number:'0'
@@ -28,8 +28,8 @@ const onChange = (obj:Partial<Selected>) => {
           onChange={type=>onChange({type})}
           ></TypeSection>
         <TagsSection 
-        selected={selected.tags}
-        onChange={tags=>onChange({tags})}
+        selected={selected.tagIds}
+        onChange={tagIds=>onChange({tagIds})}
         ></TagsSection>
         <NotesSection
           note={selected.note}

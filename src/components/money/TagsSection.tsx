@@ -34,24 +34,24 @@ ol{
 }`
 
 type Props = {
-  selected:string[]
-  onChange:(selected:string[])=>void
+  selected:number[]
+  onChange:(selected:number[])=>void
 }
 const TagsSection:FC<Props> = (prop) => {
   const {tags,setTags} = useTags()
-  const selectedTag = prop.selected
+  const selectedIds = prop.selected
   const onAddTag = () => {
     const tagName = window.prompt('请问新标签的名称为？')
     if(tagName !== null){
-      setTags([...tags,tagName])
+      setTags([...tags,{id:Math.random(),name:tagName}])
     }
   }
-  const onToggleTag = (tag:string) => {
-    const index = selectedTag.indexOf(tag)
+  const onToggleTag = (tagId:number) => {
+    const index = selectedIds.indexOf(tagId)
     if(index>=0){
-      prop.onChange(selectedTag.filter(t=>t!==tag))
+      prop.onChange(selectedIds.filter(t=>t!==tagId))
     }else{
-      prop.onChange([...selectedTag,tag])
+      prop.onChange([...selectedIds,tagId])
     }
   }
     return(
@@ -59,12 +59,12 @@ const TagsSection:FC<Props> = (prop) => {
           <ol>
             {tags.map(tag=>{
               return(
-              <li key={tag} 
-              onClick={()=>onToggleTag(tag)}
-              className={selectedTag.indexOf(tag)>=0?'selected':''}
+              <li key={tag.id}
+              onClick={()=>onToggleTag(tag.id)}
+              className={selectedIds.indexOf(tag.id)>=0?'selected':''}
               >
-                <Icon name={tag}></Icon>
-                {tag}
+                <Icon name={tag.name}></Icon>
+                {tag.name}
               </li>
             )})}
             <li onClick={onAddTag}>

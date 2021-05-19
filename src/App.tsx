@@ -16,16 +16,16 @@ export default function App() {
   return (
     <Router>
         <Switch>
-        <Route path="/tags/:tag" exact={true}>
+        <Route exact path="/tags/:tag" >
             <TagEdit />
           </Route>
-          <Route path="/tags">
+          <Route exact path="/tags">
             <Tags />
           </Route>
-          <Route path="/money">
+          <Route exact path="/money">
             <Money />
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics />
           </Route>
           <Redirect exact from="/" to="/money"></Redirect>
