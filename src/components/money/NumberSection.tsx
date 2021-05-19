@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import styled from "styled-components";
 import { generateOutput } from './generateOutput';
 
@@ -38,6 +38,7 @@ $bg:#fbaa00;
 type Prop = {
     number:string,
     onChange:(number:string)=>void
+    onOk?:()=>void
 }
 const NumberSection:FC<Prop> = (prop) => {
     const output = prop.number
@@ -52,7 +53,11 @@ const NumberSection:FC<Prop> = (prop) => {
     const onClickButtons = (e:React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent
         if(text === null){return}
-        if(text === 'OK'){return}
+        if(text === 'OK'){
+            if(prop.onOk){
+                prop.onOk()
+            }    
+        }
         setOutput(generateOutput(text,output))
     }
     return(

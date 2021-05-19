@@ -13,35 +13,31 @@ function Money() {
     note:'',
     number:'0'
   })
+  type Selected = typeof selected
+  const onChange = (obj:Partial<Selected>) => {
+    setSelected({
+      ...selected,
+      ...obj
+    }
+    )
+  }
     return (
       <Layout>
         <TypeSection
           type={selected.type}
-          onChange={(type:('-' | '+'))=>setSelected({
-            ...selected,
-            type:type
-          })}
-        ></TypeSection>
+          onChange={type=>onChange({type})}
+          ></TypeSection>
         <TagsSection 
         selected={selected.tags}
-        onChange={(tags)=>setSelected({
-          ...selected,
-          tags:tags
-        })}
+        onChange={tags=>onChange({tags})}
         ></TagsSection>
         <NotesSection
           note={selected.note}
-          onChange={(note:string)=>setSelected({
-            ...selected,
-            note:note
-          })}
+          onChange={note=>onChange({note})}
         ></NotesSection>
         <NumberSection
           number={selected.number}
-          onChange={(number:string)=>setSelected({
-            ...selected,
-            number
-          })}
+          onChange={number=>onChange({number})}
         ></NumberSection>
       </Layout>
       );
