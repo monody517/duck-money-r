@@ -12,15 +12,15 @@ function Money() {
     type:'-' as ('-' | '+'),
     note:'',
     number:'0'
-  })
-  type Selected = typeof selected
-  const onChange = (obj:Partial<Selected>) => {
+})
+type Selected = typeof selected
+const onChange = (obj:Partial<Selected>) => {
     setSelected({
       ...selected,
       ...obj
     }
     )
-  }
+}
     return (
       <Layout>
         <TypeSection
