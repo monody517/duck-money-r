@@ -16,7 +16,7 @@ export default function App() {
   return (
     <Router>
         <Switch>
-        <Route exact path="/tags/:tag.id" >
+        <Route exact path="/tags/:id" >
             <TagEdit />
           </Route>
           <Route exact path="/tags">

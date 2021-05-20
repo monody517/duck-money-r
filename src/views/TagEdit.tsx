@@ -1,8 +1,17 @@
-import React from 'react'
+import { useTags } from 'components/money/useTags';
+import React, { FC } from 'react'
+import { useParams } from 'react-router'
 
-function TagEdit(){
+type Params = {
+    id:string;
+}
+
+const TagEdit:FC = (prop) => {
+    const {findTag} = useTags()
+    const {id} = useParams<Params>()
+    const tag = findTag(parseInt(id))
     return(
-        <div>TagEdit</div>
+        <div>{tag.name}</div>
     )
 }
 
