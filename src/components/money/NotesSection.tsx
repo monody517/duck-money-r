@@ -32,7 +32,8 @@ const NotesSection:FC<Props> = (prop) => {
         if(refInput.current!== null){
             prop.onChange(refInput.current.value)
         }
-    } 
+    }
+
     return(
         <Wrapper>
         <label className='notes'>

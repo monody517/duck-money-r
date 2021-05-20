@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Icon from '../../components/icon'
 import {useTags} from './useTags'
@@ -22,12 +21,6 @@ ol{
     border-radius:12px;
     margin-right:15px;
     margin-top:10px;
-    > a{
-      display:flex;
-      flex-direction:column;
-      justify-content: center;
-      align-items: center;
-    }
     &.selected{
       background:#fbaa00;
       color:white;
@@ -45,7 +38,7 @@ type Props = {
   onChange:(selected:number[])=>void
 }
 const TagsSection:FC<Props> = (prop) => {
-  const {tags} = useTags()
+  const {tags,AddTag} = useTags()
   const newTags = tags.filter((t)=>t.type === prop.type)
   const selectedIds = prop.selected
   const onToggleTag = (tagId:number) => {
@@ -69,11 +62,9 @@ const TagsSection:FC<Props> = (prop) => {
                 {tag.name}
               </li>
             )})}
-              <li>
-                <Link to="/tags">
+              <li onClick={()=>AddTag(prop.type)}>
                   <Icon name="标签管理"></Icon>
-                  标签管理
-                </Link>
+                  添加标签
               </li>
             
           </ol>

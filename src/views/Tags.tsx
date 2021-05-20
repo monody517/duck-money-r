@@ -1,6 +1,5 @@
 import Layout from "components/Layout";
 import { useTags } from "components/money/useTags";
-import { createId } from "lib/createId";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -35,17 +34,6 @@ const Wrapper = styled.section`
           }    
         }
     }
-    .createdTag{
-        display: flex;
-        background: #fbaa00;
-        padding: 15px 0;
-        span{
-            color: white;
-            position: relative;
-            left: 50%;
-            margin-left: -32px;
-        }
-    }
 `
 
 type Props = {
@@ -53,13 +41,7 @@ type Props = {
 }
 
 const Tags:FC<Props> = (prop) => {
-  const {tags,setTags} = useTags()
-  const onAddTag = () => {
-    const tagName = window.prompt('请问新标签的名称为？')
-    if(tagName !== null){
-      setTags([...tags,{id:createId(),name:tagName,type:prop.type}])
-    }
-  }
+  const {tags} = useTags()
     return (
       <Layout>
         <Wrapper>
@@ -75,9 +57,6 @@ const Tags:FC<Props> = (prop) => {
             )
           })}
         </ol>
-        <div className='createdTag' onClick={onAddTag}>
-          <span>新建标签</span>
-        </div>
         </Wrapper>
       </Layout>
       );
