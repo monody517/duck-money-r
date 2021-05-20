@@ -29,18 +29,23 @@ const useTags= () => {
     }
     const EditTag = (id:number,obj:{name:string}) => {
         const index = findTagIndex(id)
-        console.log(index);
         const cloneTags =JSON.parse(JSON.stringify(tags))
-        cloneTags.splice(index,1,{id:id,name:obj.name,type:tags[index].type})
-        console.log(cloneTags);       
+        cloneTags.splice(index,1,{id:id,name:obj.name,type:tags[index].type})      
         setTags(cloneTags)
+    }
+    const delectTag = (id:number) => {
+        const index = findTagIndex(id)       
+        const cloneTags = JSON.parse(JSON.stringify(tags))
+        cloneTags.splice(index,1)
+        setTags(cloneTags) 
     }
     return(
         {tags,
         setTags,
         findTag,
         EditTag,
-        findTagIndex}
+        findTagIndex,
+        delectTag}
     )
 }
 

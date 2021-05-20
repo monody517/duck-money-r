@@ -49,28 +49,34 @@ span{
 `
 
 const TagEdit:FC = (prop) => {
-    const {findTag} = useTags()
-    const {id} = useParams<Params>()
-    const tag = findTag(parseInt(id))
-    const {EditTag} = useTags()
-    return(
-        <Layout>
-            <Wrapper>
-                <header className='nav'>
-                    <Icon name='left'></Icon>
-                    <span>编辑标签</span>
-                </header>
-                <div>
-                    <label className='notes'>
-                    <input type='text' placeholder={tag.name}onChange={(e)=>{EditTag(tag.id,{name:e.target.value})}}></input>
-                    </label>
-                </div>
-                <div className='delect'>
-                    <span>删除标签</span>
-                </div>
-            </Wrapper>
-        </Layout>
-    )
+    const {findTag,EditTag,delectTag} = useTags()
+    let {id:idString} = useParams<Params>()
+    const tag = findTag(parseInt(idString))
+    const onClickBack = () => {
+        window.history.back()
+    }
+    
+        return(
+            <Layout>
+                <Wrapper>
+                    <header className='nav'>
+                        <Icon name='left' onClick={onClickBack}></Icon>
+                        <span>编辑标签</span>
+                    </header>
+                    { tag ?
+                    <div>
+                        <label className='notes'>
+                        <input type='text' placeholder={tag.name}onChange={(e)=>{EditTag(tag.id,{name:e.target.value})}}></input>
+                        </label>
+                    
+                    <div className='delect' onClick={()=>{delectTag(tag.id)}}>
+                        <span>删除标签</span>
+                    </div> </div>: 
+                    <div>tag 不存在</div>
+                    }
+                </Wrapper>
+            </Layout>
+        )
 }
 
 export default TagEdit
