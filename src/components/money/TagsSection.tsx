@@ -1,4 +1,3 @@
-import { createId } from 'lib/createId';
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
