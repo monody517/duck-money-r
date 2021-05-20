@@ -16,6 +16,9 @@ const Wrapper = styled.section`
         flex-grow: 1;
         border: none;
         background: transparent;
+        :focus{
+            outline: none;
+        }
     }
 }`
 
