@@ -2,10 +2,6 @@ import { useUpdate } from "hooks/useUpdate";
 import { createId } from "lib/createId";
 import { useEffect, useRef, useState } from "react";
 
-const defaultTags:{id:number,name:string,type:('-' | '+')}[] =[
-        
-    ]
-
 const useTags= () => {
     const [tags,setTags] = useState<{id:number,name:string,type:('-' | '+')}[]>([])
 
