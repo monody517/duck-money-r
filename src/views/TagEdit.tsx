@@ -52,6 +52,7 @@ const TagEdit:FC = (prop) => {
     const {findTag} = useTags()
     const {id} = useParams<Params>()
     const tag = findTag(parseInt(id))
+    const {EditTag} = useTags()
     return(
         <Layout>
             <Wrapper>
@@ -61,7 +62,7 @@ const TagEdit:FC = (prop) => {
                 </header>
                 <div>
                     <label className='notes'>
-                    <input type='text' placeholder={tag.name}></input>
+                    <input type='text' placeholder={tag.name}onChange={(e)=>{EditTag(tag.id,{name:e.target.value})}}></input>
                     </label>
                 </div>
                 <div className='delect'>
