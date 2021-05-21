@@ -25,7 +25,7 @@ function Money() {
     )
   }
 
-  const {records,addRecord} = useRecords()
+  const {addRecord} = useRecords()
   const onSubmit = () => {
     if(addRecord(selected)){
       addRecord(selected)
