@@ -25,6 +25,11 @@ background: white;
 margin: 6px;
 height: 48px;
 border-radius: 5px;
+.title{
+  font-size: 13px;
+  padding:8px 16px;
+  line-height: 24px;
+}
 >.note{
   margin-right: auto;
   margin-left: 16px;
@@ -32,33 +37,50 @@ border-radius: 5px;
   font-size: 13px;
 }
 `
+const NoRecord = styled.section`
+    padding: 16px;
+    text-align: center;
+`
 
 function Statistics() {
   const [type,setType] = useState<'-'|'+'>('-')
   const {records} = useRecords()
   const {getName} = useTags()
+  const newRecords = records.filter(r=>r.type === type)
+  const hash:{[K:string]:RecordItem[]} = {}
+  newRecords.map(r=>{
+    const key = day(r.createdAt).format('YYYY年MM月DD日')
+    if(!(key in hash)){
+      hash[key] = []
+      hash[key].push(r)
+    }
+  })
+  const array = Object.entries(hash)
     return (
       <Layout>
         <TypeSection
         type={type}
         onChange={type=>setType(type)}
         ></TypeSection>
-        <div>
-          {records.map(r=>{
+        {array.length !== 0 ? array.map(x=>{return <div>
+            <h3 className='title'>{x[0]}</h3>
+          {x[1].map(r=>{
             return <Item>
-              {/* {day(r.createdAt).format('YYYY年MM月DD日')} */}
-              <div className="tags">
-                {r.tagIds.map(t=><span>{getName(t)}</span>)}
-              </div>
-              {r.note && <div className="note">
-                {r.note}
-              </div>}
-              <div className="amount">
-                {'￥' + r.amount}
-              </div>      
+            <div className="tags">
+              {r.tagIds.map(t=><span>{getName(t)}</span>)}
+            </div>
+            {r.note && <div className="note">
+              {r.note}
+            </div>}
+            <div className="amount">
+              {'￥' + r.amount}
+            </div>      
             </Item>
-          })}
-        </div>
+          })}   
+          </div>      
+          }): 
+          <NoRecord>没有记录，快去记账吧</NoRecord>
+        }
       </Layout>
       );
   }

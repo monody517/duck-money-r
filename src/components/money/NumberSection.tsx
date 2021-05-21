@@ -31,10 +31,9 @@ $bg:#fbaa00;
         }   
     }
     button:active{
-        background: darken(#f2f2f2, 4*2%);
+        background: #e2e2e2
     }
 `
-
 type Prop = {
     number:string,
     onChange:(number:string)=>void

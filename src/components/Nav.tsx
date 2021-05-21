@@ -7,7 +7,6 @@ import Icon from './icon'
 const NavWarpper = styled.nav`
   ul{
     display:flex;
-    box-shadow: 0 0 3px rgba(0,0,0,0.25);
     >li{
       >a{
         display:flex;
@@ -16,13 +15,13 @@ const NavWarpper = styled.nav`
         padding: 4px 0;
         align-items: center;
         .icon{
-        width:24px;
-        height:24px;
+          width:32px;
+          height:32px;
         }
         &.selected{
-          color:red;
+          color:#fbaa00;
           .icon{
-            fill:red;
+            fill:#fbaa00;
           }
         }
       }
@@ -31,20 +30,19 @@ const NavWarpper = styled.nav`
     }
   }
 `
-
 const Nav =() => {
     return(
         <NavWarpper>
             <ul>
             <li>  
             <NavLink to="/tags" activeClassName="selected">
-              <Icon name='money'></Icon>
+              <Icon name='tag'></Icon>
               标签页
             </NavLink>
             </li>
             <li>
             <NavLink to="/money" activeClassName="selected">
-              <Icon name='tag'></Icon>
+              <Icon name='money'></Icon>
               记账页
             </NavLink>
             </li>

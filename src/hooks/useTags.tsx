@@ -54,7 +54,11 @@ const useTags= () => {
     const AddTag = (type:('-'|'+')) => {
         const tagName = window.prompt('请问新标签的名称为？')
         if(tagName !== null){
-          setTags([...tags,{id:createId(),name:tagName,type:type}])
+            if(tagName.length <=4){
+                setTags([...tags,{id:createId(),name:tagName,type:type}])
+            }else{
+                alert('你输入的太长了')
+            } 
         }
     }
     const getName = (id:number) => {
