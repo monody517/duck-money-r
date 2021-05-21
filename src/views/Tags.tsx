@@ -1,5 +1,5 @@
 import Layout from "components/Layout";
-import { useTags } from "components/money/useTags";
+import { useTags } from "hooks/useTags";
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";

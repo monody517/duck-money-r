@@ -5,22 +5,33 @@ import TypeSection from '../components/money/TypeSection'
 import TagsSection from '../components/money/TagsSection'
 import NotesSection from '../components/money/NotesSection'
 import NumberSection from '../components/money/NumberSection'
+import { useRecords } from "hooks/useRecords";
 
 function Money() {
-  const [selected,setSelected] = useState({
+  const defaultFormData = {
     tagIds:[] as number[],
     type:'-' as ('-' | '+'),
     note:'',
-    number:'0'
-})
-type Selected = typeof selected
-const onChange = (obj:Partial<Selected>) => {
+    amount:'0'
+  }
+
+  const [selected,setSelected] = useState(defaultFormData)
+  type Selected = typeof selected
+  const onChange = (obj:Partial<Selected>) => {
     setSelected({
       ...selected,
       ...obj
     }
     )
-}
+  }
+
+  const {records,addRecord} = useRecords()
+  const onSubmit = () => {
+    addRecord(selected)
+    alert('保存成功')
+    setSelected(defaultFormData)
+  }
+  
     return (
       <Layout>
         <TypeSection
@@ -37,8 +48,9 @@ const onChange = (obj:Partial<Selected>) => {
           onChange={note=>onChange({note})}
         ></NotesSection>
         <NumberSection
-          number={selected.number}
-          onChange={number=>onChange({number})}
+          number={selected.amount}
+          onChange={number=>onChange({amount: number})}
+          onOk={()=>onSubmit()}
         ></NumberSection>
       </Layout>
       );

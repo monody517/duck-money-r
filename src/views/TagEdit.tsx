@@ -1,6 +1,6 @@
 import Icon from 'components/icon';
 import Layout from 'components/Layout';
-import { useTags } from 'components/money/useTags';
+import { useTags } from 'hooks/useTags';
 import React, { FC } from 'react'
 import { useParams } from 'react-router'
 import styled from 'styled-components';
