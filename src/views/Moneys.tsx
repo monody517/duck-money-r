@@ -35,7 +35,7 @@ function Money() {
   }
   
     return (
-      <Layout>
+      <Layout scrollTop={9999}>
         <TypeSection
           type={selected.type}
           onChange={type=>onChange({type})}

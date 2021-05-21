@@ -6,6 +6,7 @@ import {useTags} from '../../hooks/useTags'
 const Wrapper = styled.section`
   flex-grow:1;
 ol{
+  height: 168px;
   overflow:auto;
   display:flex;  
   flex-wrap:wrap;
@@ -16,7 +17,7 @@ ol{
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    width:92px;
+    width:25%;
     height:46px;
     border-radius:12px;
     margin-right:15px;
