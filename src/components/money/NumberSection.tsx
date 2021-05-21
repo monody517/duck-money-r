@@ -46,7 +46,7 @@ const NumberSection:FC<Prop> = (prop) => {
         if(output.length>=16){
             return
         }else if(output.length === 0){
-            output = '0'  
+            output = '0'
         }
         prop.onChange(output)
     }

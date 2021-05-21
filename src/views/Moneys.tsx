@@ -27,9 +27,11 @@ function Money() {
 
   const {records,addRecord} = useRecords()
   const onSubmit = () => {
-    addRecord(selected)
-    alert('保存成功')
-    setSelected(defaultFormData)
+    if(addRecord(selected)){
+      addRecord(selected)
+      alert('保存成功')
+      setSelected(defaultFormData)
+    }
   }
   
     return (
